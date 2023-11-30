@@ -1,0 +1,56 @@
+<form [formGroup]="flightSearchForm" class="flightSearchForm flex" fxLayout="column" fxLayoutGap="20px"
+  fxLayoutAlign="center center">
+  <mat-form-field class="form-field">
+    <input type="text" placeholder="Ciudad Origen" aria-label="Number" matInput [formControl]="getFormControl('origin')"
+      [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptionsOrigin | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="getFormControl('origin').hasError('required')">La ciudad de origen es obligatoria</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input type="text" placeholder="Ciudad Destino" aria-label="Number" matInput
+      [formControl]="getFormControl('destination')" [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptionsDestination | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="getFormControl('destination').hasError('required')">La ciudad de destino es
+      obligatoria</mat-error>
+  </mat-form-field>
+
+
+  <app-campo-datatimepicker class="form-field" [label]="'Fecha Salida'" [formControl]="getFormControl('departureDate')"
+    [placeholder]="'Salida'" [min]="minDateDeparture" [max]="maxDateDeparture">
+  </app-campo-datatimepicker>
+
+  <app-campo-datatimepicker class="form-field" [label]="'Fecha Regreso'" [formControl]="getFormControl('returnDate')"
+    [placeholder]="'Regreso'" [min]="minDateReturn">
+  </app-campo-datatimepicker>
+</form>
+
+<button class="submitBtn btn-principal" [disabled]="gettingResults" (click)="searchFlights()">Buscar
+  Vuelos</button>
+
+<app-weather-info *ngIf="flightsDeparture.length > 0" [weatherInfo]="weatherInfo"></app-weather-info>
+
+<app-flights-details *ngIf="flightsDeparture.length > 0" [departureFlights]="flightsDeparture"
+  [arriveFlights]="flightsReturn"></app-flights-details>
+
+
+<div class="resultsLoader flex justify-center" *ngIf="gettingResults">
+  <div>
+    <h1>Obteniendo resultados...</h1>
+    <div class="flex justify-center">
+      <mat-spinner [diameter]="200" [color]="'warn'" [strokeWidth]="5" [mode]="'indeterminate'"></mat-spinner>
+    </div>
+  </div>
+</div>
+
+<div class="blqError text-center" *ngIf="showError">
+  <h1>{{errorMessage}}</h1>
+</div>

@@ -1,0 +1,26 @@
+$lgBreakpoint: 1920px;
+$mdBreakpoint: 992px;
+$smBreakpoint: 768px;
+
+$mediaDesktop: 'min-width: ' + $lgBreakpoint;
+$mediaTabletH: 'min-width: ' + $mdBreakpoint + ') and (max-width: ' + ($lgBreakpoint - 1);
+$mediaTabletV: 'min-width: ' + $smBreakpoint + ') and (max-width: ' + ($mdBreakpoint - 1);
+$mediaTabletX: 'min-width: ' + $smBreakpoint + ') and (max-width: ' + ($lgBreakpoint - 1);
+$mediaMobile:  'max-width: ' + ($smBreakpoint - 1);
+
+$mediaToTabletH: 'max-width: ' + ($lgBreakpoint - 1);
+$mediaFromTabletH: 'min-width: ' + $mdBreakpoint;
+$mediaToTabletV: 'max-width: ' + ($mdBreakpoint - 1);
+$mediaFromTabletV: 'min-width: ' + $smBreakpoint;
+$mediaFromMobile:  'min-width: ' + ($smBreakpoint - 1);
+
+
+$primary-font: 'Outfit', sans-serif;
+
+$white: #FFFFFF;
+$black: black;
+$green: green;
+$gray: #b4b4b4;
+$background-color: #082145;
+$primaryColor: #C32032;
+$cardBackground: #191A1D;

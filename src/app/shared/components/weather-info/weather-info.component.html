@@ -1,0 +1,29 @@
+<mat-card *ngIf="weatherInfo" appearance="outlined">
+    <mat-card-header class="flex align-center" color="white">
+        <div class="company-info">
+            <img *ngIf="weatherInfo.descripcion.img" mat-card-image [src]="weatherInfo.descripcion.img">
+        </div>
+        <h2 *ngIf="weatherInfo.ciudad" class="weather-city"><b>{{weatherInfo.ciudad}}</b></h2>
+        <div class="weather-description">
+            <ul>
+                <li *ngIf="weatherInfo.temperaturaActual"><b>Temperatura Actual: </b>{{weatherInfo.temperaturaActual}}
+                    &deg;</li>
+                <li *ngIf="weatherInfo.descripcion.texto"><b>Estado del cielo: </b>{{weatherInfo.descripcion.texto}}
+                </li>
+                <li *ngIf="weatherInfo.precipitaciones"><b>Precipitaciones: </b>{{weatherInfo.precipitaciones}} mm</li>
+            </ul>
+            <h3 class="text-center">Próximos días:</h3>
+            <div class="flex">
+                <div class="text-center" *ngFor="let dayFutures of weatherInfo.pronostico.slice(1)">
+                    <h3 *ngIf="dayFutures['date']">{{dayFutures['date'] | date:'dd/MM/yyyy'}}</h3>
+                    <div *ngIf="dayFutures['day']['condition']['text']">
+                        <p class="flex">
+                            <img [src]="dayFutures['day']['condition']['icon']">
+                            <b>{{dayFutures['day']['condition']['text']}}</b>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </mat-card-header>
+</mat-card>

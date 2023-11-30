@@ -1,0 +1,47 @@
+@import "utilidades/flex";
+@import "utilidades/variables";
+
+.flightSearchForm {
+    @include align-items-center;
+}
+
+.submitBtn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+app-weather-info {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: block;
+}
+
+mar-tab {
+    font-size: 30px;
+}
+
+mat-spinner {
+    width: 200px;
+}
+
+.blqError {
+    color: $primaryColor;
+}
+
+@media ($mediaFromTabletH) {
+    .flightSearchForm {
+        .form-field {
+            &:nth-child(n + 2) {
+                margin-left: 50px;
+            }
+        }
+    }
+}
+
+@media ($mediaToTabletV) {
+    .flightSearchForm {
+        @include justify-content-center;
+        @include flex-wrap;
+    }
+}

@@ -1,0 +1,40 @@
+@import "utilidades/flex";
+@import "utilidades/variables";
+
+h2,
+p,
+span,
+b,
+ul,
+li,
+h3 {
+    color: $black;
+}
+
+mat-card {
+    margin-bottom: 20px;
+}
+
+mat-card-header {
+    padding: 50px;
+    
+    mat-card img {
+        width: 100px;
+        border-radius: 50%;
+    }
+}
+
+.blq-price {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 150px;
+}
+
+.company-info {
+    width: 100px;
+    @include flex;
+    @include flex-column;
+    @include justify-content-center;
+    @include align-items-center;
+    text-align: center;
+}

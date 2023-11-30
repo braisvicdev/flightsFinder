@@ -1,0 +1,192 @@
+@import "utilidades/variables";
+@import "utilidades/flex";
+
+.mainHeaderSticky {
+    position: fixed !important;
+    background-color: $background-color;
+    z-index: 2;
+    header {
+        position: fixed;
+    }
+}
+header {
+    width: 100%;
+    // position: absolute;
+    z-index: 1;
+    top: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .menu-items {
+        margin-left: auto;
+
+        .menu-item {
+            font-weight: 600;
+            color: $white;
+            font-size: 17px;
+            letter-spacing: 1px;
+
+            &:hover {
+                color: $primaryColor;
+            }
+        }
+    }
+}
+
+.menu-burger {
+    position: relative;
+}
+
+.burger-icon {
+    cursor: pointer;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: $white;
+    padding: 10px;
+}
+
+.menu.open {
+    display: block;
+}
+
+@media ($mediaFromMobile) {
+    .menuBurguer {
+        display: none;
+    }
+    header {
+        .logo {
+            width: 175px;
+        }
+    }
+}
+
+@media ($mediaMobile) {
+    .container {
+        @include align-items-center;
+        @include justify-content-between;
+    }
+    .menu-items {
+        display: none;
+    }
+    header {
+        .logo {
+            width: 100px;
+        }
+    }
+}
+
+header {
+    nav {
+        background-color: $background-color;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            top: 170px;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+
+            li {
+                transform: translateY(50px);
+                opacity: 0;
+
+                a {
+                    display: block;
+                    font-size: 32px;
+                    text-decoration: none;
+                    padding: 10px 0;
+                    text-align: center;
+                    color: $white;
+                    font-weight: bold;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.burguer-btn {
+    display: block;
+    z-index: 10;
+    right: 10px;
+    top: 10px;
+    visibility: visible;
+    cursor: pointer;
+
+    &.menuOpen {
+        position: fixed;
+    }
+
+    .bar {
+        width: 30px;
+        height: 2px;
+        margin: 7px auto;
+        background-color: $white;
+        transition: all 0.3s ease-in-out;
+        &:nth-child(2) {
+            width: 20px;
+        }
+    }
+}
+
+#burguerElement:checked {
+    & ~ nav {
+        opacity: 1;
+        visibility: visible;
+
+        ul {
+            top: 70px;
+
+            li {
+                transform: translateY(0px);
+                opacity: 1;
+
+                @for $i from 1 through 4 {
+                    $t: $i * 0.1;
+                    &:nth-child(#{$i}) {
+                        transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) #{$t}s;
+                    }
+                }
+            }
+        }
+    }
+
+    & + label.burguer-btn {
+        .bar {
+            background-color: $primaryColor;
+
+            &:nth-child(2) {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            &:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    }
+}

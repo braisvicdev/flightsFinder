@@ -1,0 +1,20 @@
+<div class="form-field">
+  <mat-form-field class="icono-mat-suffix campo-datapicker">
+    <mat-label>{{label}}</mat-label>
+    <div class="flex">
+      <input matInput readonly placeholder="{{placeholder}}" (keydown)="false" (click)="dpHasta.open()"
+        [matDatepicker]="dpHasta" [min]="min" [max]="max" [formControl]="formControl">
+      <button mat-icon-button *ngIf="formControl.value && !formControl.disabled" class="btn-clearInput"
+        (click)="formControl.reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-datepicker-toggle matSuffix [for]="dpHasta">
+      <mat-icon  [color]="'primary'">
+        calendar
+      </mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #dpHasta [color]="'primary'"></mat-datepicker>
+  </mat-form-field>
+</div>

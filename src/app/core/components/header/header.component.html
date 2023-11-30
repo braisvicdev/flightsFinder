@@ -1,0 +1,50 @@
+<header #header>
+    <div class="flex container align-center">
+        <picture class="logo">
+            <a href="/">
+                <img src="assets/images/logos/logo.webp" alt="logo" />
+            </a>
+        </picture>
+        <div class="menu-items flex">
+            <div *ngFor="let itemMenu of itemsMenu">
+                <button class="menu-item" *ngIf="itemMenu?.subItems; else buttonBasic" mat-button
+                    [matMenuTriggerFor]="subMenu">{{itemMenu.label}}</button>
+
+                <ng-template #buttonBasic>
+                    <button mat-button>
+                        <a class="menu-item"  [linkExterno]= "itemMenu.href" [target]="determinarTargetBlank(itemMenu)">
+                            {{itemMenu.label}}
+                        </a>
+                    </button>
+                </ng-template>
+
+                <mat-menu #subMenu="matMenu">
+                    <ng-container *ngFor="let subitem of itemMenu.subItems">
+                        <button mat-menu-item>
+                            <a class="menu-item"  [linkExterno]= "subitem.href" [target]="determinarTargetBlank(subitem)">
+                                {{itemMenu.label}}
+                            </a>
+                        </button>
+                    </ng-container>
+                </mat-menu>
+            </div>
+        </div>
+
+        <div class="menuBurguer">
+            <input type='checkbox' #menuBurguerInput id='burguerElement' style="display: none;" />
+            <label #burguerBtn class='burguer-btn burguer-btn__cross' for='burguerElement' (click)="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </label>
+            <nav class="burguerNav">
+                <ul>
+                    <li *ngFor="let itemMenu of itemsMenu">
+                        <a (click)="clickMenuBurguerItem()"  [linkExterno] = "itemMenu.href" [target]="determinarTargetBlank(itemMenu)">{{itemMenu.label}}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</header>
